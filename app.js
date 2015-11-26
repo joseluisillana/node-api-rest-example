@@ -22,7 +22,7 @@ mongoose.connect('mongodb://10.211.55.112:27017/tvshows', function(err, res) {
     console.log("Error connecting to the database.");
     throw err;
   } else if (connectionStatus > 0 && connectionStatus < 3){
-    console.log('Connected to Database');
+    console.log('Connected to the Database');
   }else {
     console.log("Not connected to the database");
   }
