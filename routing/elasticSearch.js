@@ -21,7 +21,7 @@ routerElastic.get('/pingElastic',function(req,res){
       console.error('elasticsearch cluster is down!');
       res.status(500).send('elasticsearch cluster is down!');
     } else {
-      console.log('All is well');
+      console.log('M.I.K.E - All is well');
       res.status(200).send('All is well');
     }
   });

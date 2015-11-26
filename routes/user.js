@@ -37,7 +37,7 @@
      if(err){
        res.send(500, err.message);
      }else{
-       console.log('GET /tvshows');
+       console.log('M.I.K.E - GET /tvshows');
        res.status(200).jsonp(tvshows);
      }
    });
@@ -74,11 +74,11 @@
   * @param The standard HTTP response object
   */
  exports.findById = function(req, res){
-   TVShow.findById(red.params.id, function(err, tvshow){
+   TVShow.findById(req.params.id, function(err, tvshow){
      if(err){
        res.send(500, err.message);
      }else{
-       console.log('GET /tvshow/' + req.params.id);
+       console.log('M.I.K.E - GET /tvshow/' + req.params.id);
        res.status(200).jsonp(tvshow);
      }
    });
@@ -119,7 +119,7 @@
  * @param response The standard http response
  */
  exports.addTVShow = function(req, res){
-   console.log('POST');
+   console.log('M.I.K.E - POST');
    console.log(req.body);
 
    var tvshow = new TVShow({
@@ -134,10 +134,10 @@
 
    tvshow.save(function(err,tvshow){
      if (err){
-       console.log('ERROR Saving on DB');
+       console.log('M.I.K.E - ERROR Saving on DB');
        return res.status(500).send(err.message);
      }else{
-       console.log('OK Saving on DB');
+       console.log('M.I.K.E - OK Saving on DB');
        res.status(200).jsonp(tvshow);
      }
    });
@@ -213,8 +213,8 @@ exports.deleteTVShow = function(req, res){
  */
  exports.updateTVShow = function(req, res){
    TVShow.findById(req.params.id, function(err, tvshow){
-     console.log("Updating : " + req.params.id + " with title: " + tvshow.title);
-     console.log("New Data: " + req.body);
+     console.log("M.I.K.E - Updating : " + req.params.id + " with title: " + tvshow.title);
+     console.log("M.I.K.E - New Data: " + req.body);
      tvshow.title = req.body.title;
      tvshow.year = req.body.year;
      tvshow.country = req.body.country;
@@ -225,10 +225,10 @@ exports.deleteTVShow = function(req, res){
 
      tvshow.save(function(err){
        if (err){
-         console.log("ERROR Updating : " + req.params.id);
+         console.log("M.I.K.E - ERROR Updating : " + req.params.id);
          return res.status(500).send(err.message);
        }else{
-         console.log("OK Updating : " + req.params.id);
+         console.log("M.I.K.E - OK Updating : " + req.params.id);
          res.status(200).jsonp(tvshow);
        }
      });
