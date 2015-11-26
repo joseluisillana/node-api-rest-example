@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
-var TVShow = mongoose.model('TVShow');
+
 
 //GET - Return all tvshows in the DB
 exports.findAllTVShows = function(req, res){
+  var mongoose = require('mongoose');
+  var TVShow = mongoose.model('TVShow');
   TVShow.find(function(err, tvshows){
     if(err){
       res.send(500, err.message);
@@ -16,6 +17,8 @@ exports.findAllTVShows = function(req, res){
 
 //GET - Return the tvshows with specified Id
 exports.findById = function(req, res){
+  var mongoose = require('mongoose');
+  var TVShow = mongoose.model('TVShow');
   TVShow.findById(red.params.id, function(err, tvshow){
     if(err){
       res.send(500, err.message);
@@ -28,6 +31,8 @@ exports.findById = function(req, res){
 
 //POST - Insert a new TVShow in the DB
 exports.addTVShow = function(req, res){
+  var mongoose = require('mongoose');
+  var TVShow = mongoose.model('TVShow');
   console.log('POST');
   console.log(req.body);
 
@@ -54,6 +59,8 @@ exports.addTVShow = function(req, res){
 
 //PUT - Update a TVShow in the DB
 exports.updateTVShow = function(req, res){
+  var mongoose = require('mongoose');
+  var TVShow = mongoose.model('TVShow');
   TVShow.findById(req.params.id, function(err, tvshow){
     console.log("Updating : " + req.params.id + " with title: " + tvshow.title);
     console.log("New Data: " + req.body);
@@ -80,6 +87,8 @@ exports.updateTVShow = function(req, res){
 
 //DELETE - Delete a TVShow specified in the DB
 exports.deleteTVShow = function(req, res){
+  var mongoose = require('mongoose');
+  var TVShow = mongoose.model('TVShow');
   TVShow.findById(req.params.id, function(err, tvshow){
     tvshow.remove(function(err){
       if (err){

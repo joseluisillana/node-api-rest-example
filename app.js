@@ -4,7 +4,8 @@ var express         = require("express"),
     methodOverride  = require("method-override"),
     mongoose        = require('mongoose'),
     favicon         = require('serve-favicon'),
-    path            = require('path');
+    path            = require('path'),
+    expressApiDoc = require('express-api-docs');
 
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -42,7 +43,11 @@ mongoose.connect('mongodb://10.211.55.112:27017/tvshows', function(err, res) {
 // Favicon, Logging and cookies control
 //app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(favicon(__dirname + '/public/favicon.ico'));
+
+// Logging para peticiones, interceptación de metodos
 app.use(logger('dev'));
+
+// Parseo de cookies
 app.use(cookieParser());
 
 // Middlewares
@@ -54,8 +59,15 @@ app.use(methodOverride());
 var models     = require('./models/tvshow')(app, mongoose);
 var TVShowCtrl = require('./controllers/tvshows');
 
+// Momento para meter los enrutamientos por separado
+/*var elasticsearch_routes = require('./routing/elasticSearch');
+var misc_routes = require('./routing/misc');
+var mongodb_routes = require('./routing/mongodb');
+*/
+
+
 // Example Route
-var router = express.Router();
+/*var router = express.Router();
 router.get('/', function(req, res) {
   res.send("Hello world!");
 });
@@ -76,26 +88,12 @@ router.get('/pingElastic',function(req,res){
   });
 });
 
-app.use(router);
+app.use(router);*/
 
-// API routes
-var routerTable = express.Router();
-
-// Endpoints to ask mongodb
-routerTable.route('/tvshows')
-  .get(TVShowCtrl.findAllTVShows)
-  .post(TVShowCtrl.addTVShow);
-
-routerTable.route('/tvshows/:id')
-  .get(TVShowCtrl.findById)
-  .put(TVShowCtrl.updateTVShow)
-  .delete(TVShowCtrl.deleteTVShow);
-
-// Endpoints to ask ElasticSearch
-
-
-// Add the routing table
-app.use('/api', routerTable);
+//// API routes
+var router = express.Router();
+var routesTVShow = require('./router');
+routesTVShow.setupTVShows('/api',app);
 
 // Start server
 app.listen(3000, function() {
