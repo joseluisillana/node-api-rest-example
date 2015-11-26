@@ -5,6 +5,11 @@
  "mongoose": "~3.6.11",
  "express": "^4.7.1",
  "method-override": "^2.1.2",
- "body-parser": "^1.5.1"
+ "body-parser": "^1.5.1",
+ "elasticsearchclient": "^0.5.3",
+ "filtres": "^0.1.4",
+ "morgan": "^1.6.1",
+ "cookie-parser": "^1.4.0",
+ "favicon": "^0.0.2"
  }
 }
