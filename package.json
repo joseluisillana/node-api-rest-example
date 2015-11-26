@@ -6,10 +6,12 @@
  "express": "^4.7.1",
  "method-override": "^2.1.2",
  "body-parser": "^1.5.1",
- "elasticsearchclient": "^0.5.3",
+ "elasticsearch": "^10.0.0",
  "filtres": "^0.1.4",
  "morgan": "^1.6.1",
  "cookie-parser": "^1.4.0",
- "favicon": "^0.0.2"
+ "favicon": "^0.0.2",
+ "path": "^0.12.7",
+ "serve-favicon": "^2.3.0"
  }
 }

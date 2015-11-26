@@ -2,10 +2,20 @@ var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
     methodOverride  = require("method-override"),
-    mongoose        = require('mongoose');
+    mongoose        = require('mongoose'),
+    favicon         = require('serve-favicon'),
+    path            = require('path');
 
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+
+// The elasticsearch component
+var elasticsearch = require("elasticsearch");
+// The elasticsearch client
+var elasticSearchClient = new elasticsearch.Client({
+  host: 'localhost:9200',
+  log: 'trace'
+});
 
 // Connection to DB
 mongoose.connect('mongodb://10.211.55.112:27017/tvshows', function(err, res) {
@@ -28,8 +38,10 @@ mongoose.connect('mongodb://10.211.55.112:27017/tvshows', function(err, res) {
   }
 });
 
+
 // Favicon, Logging and cookies control
-//app.use(favicon());
+//app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(cookieParser());
 
@@ -47,6 +59,23 @@ var router = express.Router();
 router.get('/', function(req, res) {
   res.send("Hello world!");
 });
+
+router.get('/pingElastic',function(req,res){
+  elasticSearchClient.ping({
+    requestTimeout: 30000,
+    // undocumented params are appended to the query string
+    hello: "elasticsearch"
+  }, function (error) {
+    if (error) {
+      console.error('elasticsearch cluster is down!');
+      res.status(500).send('elasticsearch cluster is down!');
+    } else {
+      console.log('All is well');
+      res.status(200).send('All is well');
+    }
+  });
+});
+
 app.use(router);
 
 // API routes
