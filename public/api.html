@@ -30,6 +30,132 @@ $(function() {
 <body>
   <div id="container">
     <div id="accordion">
+      <div>
+        <h1>
+          <a href="#" name="findAllTVShows">
+            GET /tvshows
+          </a>
+        </h1>
+        <div>
+          <p>Retrieves All TVShows in the Database</p><p>Examples:</p><p>   GET /tvshows</p><p>Response:</p><p>Returns the data associated with a tvshows as an object, as in:</p><pre><code>{
+   _id:&quot;565490baaaa20bd929000001&quot;,
+   year:2004,
+   country:&quot;USA&quot;,
+   poster:&quot;http://ia.media-imdb.com/image_.jpg&quot;,
+   seasons:1,
+   genre:&quot;Sci-Fi&quot;,
+   summary:&quot;The survivors of a plane crash are forced to live with each other on a remote island...&quot;,
+   __v:0
+}
+</code></pre><p>Errors:</p><ul>
+<li><code>500</code> with a database error</li>
+</ul>
+<p>Error Response:</p>
+        </div>
+      </div>
+      <div>
+        <h1>
+          <a href="#" name="findById">
+            GET /tvshows/:id
+          </a>
+        </h1>
+        <div>
+          <p>Retrieves a TVShow with specified ID in the Database</p><p>Examples:</p><p>   GET /tvshows/:id</p><p>Response:</p><p>Returns the data associated with a tvshow as an object, as in:</p><pre><code>{
+   _id:&quot;565490baaaa20bd929000001&quot;,
+   year:2004,
+   country:&quot;USA&quot;,
+   poster:&quot;http://ia.media-imdb.com/image_.jpg&quot;,
+   seasons:1,
+   genre:&quot;Sci-Fi&quot;,
+   summary:&quot;The survivors of a plane crash are forced to live with each other on a remote island...&quot;,
+   __v:0
+}
+</code></pre><p>Errors:</p><ul>
+<li><code>500</code> with a database error</li>
+</ul>
+<p>Error Response:</p>
+        </div>
+      </div>
+      <div>
+        <h1>
+          <a href="#" name="addTVShow">
+            POST /tvshows
+          </a>
+        </h1>
+        <div>
+          <p>Creates a TVShow via a <code>POST</code> call.<br />If the status code is not given, 200 is assumed.<br />Examples:</p><p>   POST /tvshows/</p><p>Body:</p><p>The body of the <code>POST</code> call should contain a user&#39;s account as a JSON<br />document, as in:</p><pre><code>{
+  &quot;title&quot;: &quot;LOST&quot;,
+   &quot;year&quot;: 2004,
+   &quot;country&quot;: &quot;USA&quot;,
+   &quot;poster&quot;: &quot;http://ia.media-imdb.com/image.jpg&quot;,
+   &quot;seasons&quot;: 6,
+   &quot;genre&quot;: &quot;Sci-Fi&quot;,
+   &quot;summary&quot;: &quot;The survivors of a plane ....&quot;
+}
+</code></pre><p>Response:</p><p> Returns the added TVShow&#39;s information with an additional <code>id</code><br /> value.</p><p>Errors:</p><ul>
+<li><code>500</code> with a database error</li>
+</ul>
+
+        </div>
+      </div>
+      <div>
+        <h1>
+          <a href="#" name="deleteTVShow">
+            DELETE /tvshows/:id
+          </a>
+        </h1>
+        <div>
+          <p>Deletes a TVShow&#39;s information. Similar to the <code>GET</code> request, either<br />the ID value must be specified.</p><p>Examples:</p><p>   DELETE /tvshows/23857202328382</p><p>Response:</p><p> Returns the TVShow information associated with the document that was<br /> successfully deleted.</p><p>Errors:</p><ul>
+<li><code>500</code> with a database error</li>
+</ul>
+
+        </div>
+      </div>
+      <div>
+        <h1>
+          <a href="#" name="updateTVShow">
+            PUT /tvshows/:id
+          </a>
+        </h1>
+        <div>
+          <p>Updates a TVShow&#39;s information. Similar to the <code>GET</code> request,<br />the TVShow is referenced by an ID value.</p><p>Examples:</p><p>   PUT /tvshows/23857202328382</p><p>Body:</p><p>The body of the <code>PUT</code> should contain updated values for the user&#39;s<br />account as a JSON document, as in:</p><pre><code>{
+  &quot;title&quot;: &quot;LOST&quot;,
+   &quot;year&quot;: 2004,
+   &quot;country&quot;: &quot;USA&quot;,
+   &quot;poster&quot;: &quot;http://ia.media-imdb.com/image.jpg&quot;,
+   &quot;seasons&quot;: 6,
+   &quot;genre&quot;: &quot;Sci-Fi&quot;,
+   &quot;summary&quot;: &quot;The survivors of a plane ....&quot;
+}
+</code></pre><p>Notice that all the information must be given, not just updated<br />values.</p><p>Response:</p><p>Returns the added TVShow&#39;s information with an additional <code>id</code> value.</p><p>Errors:</p><ul>
+<li><code>500</code> with a database error.</li>
+</ul>
+
+        </div>
+      </div>
+      <div>
+        <h1>
+          <a href="#" name="getElasticSearchHealth">
+            GET /pingElastic
+          </a>
+        </h1>
+        <div>
+          <p>Retrieves information by doing a ping to the cluster</p><p>Examples:</p><p>   GET /pingElastic</p><p>Response:</p><p>Returns information about the action.</p><p>Errors:</p><ul>
+<li><code>500</code> if it can&#39;t be possible to do the ping.</li>
+</ul>
+<p>Error Response:</p>
+        </div>
+      </div>
+      <div>
+        <h1>
+          <a href="#" name="index">
+            GET /
+          </a>
+        </h1>
+        <div>
+          <p>Function: index</p><p> GET / - Redirects to the index.html page to run the tests.</p><p> This function simply returns a 302 HTTP status and redirects<br /> to the test-api/index.html file to quickly start up the tests.</p>
+        </div>
+      </div>
     </div>
   </div>
 </body>

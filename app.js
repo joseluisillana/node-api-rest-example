@@ -62,8 +62,9 @@ var models     = require('./models/tvshow')(app, mongoose);
 //// API routes
 var router = express.Router();
 var routeGenerator = require('./router');
-routeGenerator.setupTVShows('/api',app);
-routeGenerator.setupElasticHealth('/api',app);
+routeGenerator.setupTVShows(app);
+routeGenerator.setupElasticHealth(app);
+routeGenerator.setupIndex(app);
 
 // Start server
 app.listen(3000, function() {
